@@ -45,22 +45,27 @@
 	<main>	
 		<section class="main_tutorial">
 			<?php
-                $id = $_GET['id'];//validar o recebimento do id
-				foreach($tutoriais as $key => $value){
-                    if($value['id'] == $id){
-						//alterei aqui
-						$data = new DateTime($value['data']);
-				?>
-					<header class="main_tutorial_header">
-						<h1><?=$value['titulo'];?></h1>
-						<!--alterei aqui-->
-						<h2>Autor: <?=$value['autor'];?></h2>
-						<h3>Publicado em: <?=$data->format('d/m/Y');?></h3>
-					</header>
-					<img src=<?=$value['imagem'];?>>
-					<p><?=$value['descricao'];?></p>			
-					<?php
-                    }
+				if(isset($_GET['id']) && !empty($_GET['id'])){
+					//echo "ID = ". $_GET['id'];
+					$id = $_GET['id'];//validar o recebimento do id
+					foreach($tutoriais as $key => $value){
+						if($value['id'] == $id){
+							//alterei aqui
+							$data = new DateTime($value['data']);
+					?>
+						<header class="main_tutorial_header">
+							<h1><?=$value['titulo'];?></h1>
+							<!--alterei aqui-->
+							<h2>Autor: <?=$value['autor'];?></h2>
+							<h3>Publicado em: <?=$data->format('d/m/Y');?></h3>
+						</header>
+						<img src=<?=$value['imagem'];?> title="<?=$value['title_img'];?>" alt="<?=$value['title_img'];?>">
+						<p><?=$value['descricao'];?></p>			
+						<?php
+						}
+					}
+				}else{
+					echo "Não existe";
 				}
 			?>
 		</section>
@@ -69,6 +74,7 @@
 				<h1>Ver mais Tutoriais</h1>
 			</header>
 			<?php
+			$id = 0;
 				foreach($tutoriais as $key => $value){
                     if($value['id'] != $id){
 			?>

@@ -43,6 +43,7 @@
 			</header>
 			<?php
 			//validar se array existe e se não está vazio
+			if(is_array($tutoriais) && !empty($tutoriais)){
 				foreach($tutoriais as $key => $value){
 			?>
 			<article>
@@ -55,6 +56,9 @@
 			</article>
 			<?php
 			}
+		}else{
+			echo "Sem Tutoriais no momento!!!";
+		}
 			?>
 			
 		</section>
@@ -65,9 +69,9 @@
                     <h1>Quer receber todas as novidades em seu e-mail?</h1>
                     <p>Informe seu nome e o melhor e-mail no campo ao lado e clique em ok!</p>
                 </header>
-                <form>
-                    <input type="text" placeholder="Seu nome">
-                    <input type="email" placeholder="Seu e-mail">
+                <form action="pagina1.php" method="POST">
+                    <input type="text" name = "nome" placeholder="Seu nome">
+                    <input type="email" name = "email" placeholder="Seu e-mail">
                     <button>OK!</button>
                 </form>
             </div>
